@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Chart from 'react-apexcharts';
 import { SaleSum } from 'types/sale';
+import { BASE_URL } from 'utils/request';
 
 type ChartData = {
   labels: string[];
@@ -12,7 +13,7 @@ const DonutChart = () => {
   //Forma errada
   let chartData : ChartData = {labels: [], series: []};
 
-  axios.get('${BASE_URL}/sale/amount-by-seller')
+  axios.get(`${BASE_URL}/sales/amount-by-seller`)
       .then(response => {
         const data = response.data as SaleSum[];
         const myLabels = data.map(x => x.sellerName);
